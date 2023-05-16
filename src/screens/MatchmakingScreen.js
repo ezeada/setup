@@ -1,20 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  TouchableOpacity,
+} from "react-native";
 
 const MatchmakingScreen = () => {
   const nextPerson = () => {};
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handleLogin} style={styles.button}>
-          <Text style={styles.buttonText}>{}</Text> // set Text to person 1
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>1</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleSignUp}
-          style={[styles.button, styles.buttonOutline]}
-        >
-          <Text style={styles.buttonOutlineText}>{}</Text> // set Text to person
-          2
+        <TouchableOpacity style={[styles.button, styles.buttonOutline]}>
+          <Text style={styles.buttonOutlineText}>2</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>

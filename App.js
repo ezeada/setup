@@ -2,7 +2,8 @@ import Navigation from "./src/layout/Navigation";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-
+import { Platform, SafeAreaView, Text, View } from "react-native";
+import { StatusBar } from "react-native";
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -12,7 +13,6 @@ export default function App() {
     LobsterReg: require("./src/assets/fonts/Lobster-Regular.ttf"),
     RalewayReg: require("./src/assets/fonts/Raleway-Regular.ttf"),
   });
-
   // Wait for fonts to load before applcation starts
   useEffect(() => {
     async function prepare() {
@@ -28,5 +28,15 @@ export default function App() {
     SplashScreen.hideAsync();
   }
 
-  return <Navigation />;
+  // TODO: if logged in, render Main Layout. else render splashScreen and LoginScreen
+  return (
+    <SafeAreaView
+      style={{
+        flex: 1,
+      }}
+    >
+      <StatusBar backgroundColor={"#fff"} barStyle={"dark-content"} />
+      <Navigation />
+    </SafeAreaView>
+  );
 }
