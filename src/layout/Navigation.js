@@ -1,4 +1,4 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -11,12 +11,23 @@ const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   const Tab = createBottomTabNavigator();
+
+  // Override background variable from default theme
+  const navTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: "transparent",
+    },
+  };
+
   return (
     <>
-      <NavigationContainer>
+      <NavigationContainer theme={navTheme}>
         <Tab.Navigator
           initialRouteName="Info"
           screenOptions={({ route }) => ({
+            headerShown: false,
             tabBarStyle: {
               backgroundColor: "#000",
             },

@@ -6,6 +6,7 @@ const COLORS = {
 const FONT = {
   logoFont: "LobsterReg",
   mottoFont: "RalewayReg",
+  boldFont: "RalewayBold",
 };
 
 const SIZES = {};

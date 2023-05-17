@@ -12,6 +12,7 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     LobsterReg: require("./src/assets/fonts/Lobster-Regular.ttf"),
     RalewayReg: require("./src/assets/fonts/Raleway-Regular.ttf"),
+    RalewayBold: require("./src/assets/fonts/Raleway-Bold.ttf"),
   });
   // Wait for fonts to load before applcation starts
   useEffect(() => {
@@ -33,6 +34,7 @@ export default function App() {
     <SafeAreaView
       style={{
         flex: 1,
+        backgroundColor: "#fff",
       }}
     >
       <StatusBar backgroundColor={"#fff"} barStyle={"dark-content"} />
