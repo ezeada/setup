@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { FONT } from "../constants/theme";
 import HeaderLogo from "../components/UI/HeaderLogo";
 import MatchingCards from "../components/Matching/MatchingCards";
+import MatchingActions from "../components/Matching/MatchingActions";
 const MatchmakingScreen = () => {
   const nextPerson = () => {};
   return (
@@ -10,15 +11,14 @@ const MatchmakingScreen = () => {
       <HeaderLogo />
       <View
         style={{
-          paddingHorizontal: 14,
+          paddingHorizontal: 8,
           flex: 1,
           justifyContent: "center",
+          gap: 20,
         }}
       >
         <MatchingCards />
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.text}>Set-up</Text>
-        </TouchableOpacity>
+        <MatchingActions />
       </View>
     </>
   );
@@ -30,24 +30,3 @@ const MatchmakingScreen = () => {
 // if next person is swiped, then it notes
 
 export default MatchmakingScreen;
-
-const styles = StyleSheet.create({
-  btn: {
-    backgroundColor: "#fff",
-    borderRadius: 50,
-    alignSelf: "center",
-    paddingHorizontal: 44,
-    paddingVertical: 12,
-    marginTop: 20,
-    shadowRadius: 4,
-    shadowOffset: { width: 4, height: 4 },
-    shadowColor: "#000",
-    shadowOpacity: 0.25,
-    elevation: 6,
-  },
-
-  text: {
-    fontFamily: FONT.boldFont,
-    fontSize: 16,
-  },
-});

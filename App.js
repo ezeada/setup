@@ -13,6 +13,7 @@ export default function App() {
     LobsterReg: require("./src/assets/fonts/Lobster-Regular.ttf"),
     RalewayReg: require("./src/assets/fonts/Raleway-Regular.ttf"),
     RalewayBold: require("./src/assets/fonts/Raleway-Bold.ttf"),
+    RalewaySemiBold: require("./src/assets/fonts/Raleway-SemiBold.ttf"),
   });
   // Wait for fonts to load before applcation starts
   useEffect(() => {

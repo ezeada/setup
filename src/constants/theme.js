@@ -7,6 +7,7 @@ const FONT = {
   logoFont: "LobsterReg",
   mottoFont: "RalewayReg",
   boldFont: "RalewayBold",
+  semiBoldFont: "RalewaySemiBold",
 };
 
 const SIZES = {};
