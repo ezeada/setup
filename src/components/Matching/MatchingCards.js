@@ -1,35 +1,125 @@
-import styles from "./MatchingCards.style";
-import { View, ImageBackground, Text, Animated } from "react-native";
-const MatchingCards = () => {
-  const DUMMY_DATA = {};
-  return (
-    <View style={styles.cardContainer}>
-      <View style={styles.cardImgWrapper}>
-        <ImageBackground
-          source={{
-            uri: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-          }}
-          style={styles.cardImg}
-        >
-          <View style={styles.cardInfo}>
-            <Text style={styles.cardInfoName}>Maddie, 28</Text>
-            <Text style={styles.cardInfoLocation}>Bay Area, CA</Text>
-          </View>
-        </ImageBackground>
-      </View>
+import { useState, useEffect } from "react";
+import {
+  View,
+  Pressable,
+  TouchableOpacity,
+  Text,
+  useWindowDimensions,
+} from "react-native";
+import Animated, {
+  Easing,
+  withTiming,
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
 
-      <View style={styles.cardImgWrapper}>
-        <ImageBackground
-          source={require("../../assets/images/sample-user2.jpg")}
-          style={styles.cardImg}
+import Icon from "react-native-vector-icons/Entypo";
+import { FontAwesome } from "@expo/vector-icons";
+
+import styles from "./MatchingCards.style";
+import MatchCarousel from "./MatchCarousel";
+import testData from "../../assets/testData";
+
+const MatchingCards = () => {
+  const SCREEN_WIDTH = useWindowDimensions("screen").width * 0.8;
+  const contacts = testData.contacts;
+  const [isLockedLeft, setIsLockedLeft] = useState(true);
+  const [isLockedRight, setIsLockedRight] = useState(true);
+  const handleLockPress = (lock) => {
+    lock === "left"
+      ? setIsLockedLeft((prevState) => {
+          if (isLockedLeft) setIsLockedRight(true);
+          return !prevState;
+        })
+      : setIsLockedRight((prevState) => {
+          if (isLockedRight) setIsLockedLeft(true);
+          return !prevState;
+        });
+  };
+
+  const offset = useSharedValue(0);
+  const width = useSharedValue("100%");
+
+  useEffect(() => {
+    if (isLockedLeft && isLockedRight) {
+      width.value = withTiming("100%", {
+        duration: 300,
+        easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+      });
+      offset.value = withTiming(0, {
+        duration: 300,
+        easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+      });
+    }
+
+    if (!isLockedLeft) {
+      width.value = "180%";
+      offset.value = withTiming(0, {
+        duration: 0,
+        easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+      });
+    }
+    if (!isLockedRight) {
+      width.value = "180%";
+      offset.value = withTiming(-SCREEN_WIDTH, {
+        duration: 0,
+        easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+      });
+    }
+  }, [isLockedLeft, isLockedRight]);
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      width: withTiming(width.value, {
+        duration: 300,
+        easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+      }),
+      transform: [
+        {
+          translateX: withTiming(offset.value, {
+            duration: 300,
+            easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+          }),
+        },
+      ],
+    };
+  });
+  return (
+    <>
+      <Animated.View style={[styles.container, animatedStyles]}>
+        <MatchCarousel
+          data={contacts}
+          handleLockPress={handleLockPress}
+          stack={"left"}
+        />
+        <MatchCarousel
+          data={contacts}
+          handleLockPress={handleLockPress}
+          stack={"right"}
+        />
+      </Animated.View>
+
+      <View style={styles.actionsContainer}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => console.log(`Set up!`)}
         >
-          <View style={styles.cardInfo}>
-            <Text style={styles.cardInfoName}>Sean, 28</Text>
-            <Text style={styles.cardInfoLocation}>Palo Alto, CA</Text>
-          </View>
-        </ImageBackground>
+          <FontAwesome name="search" size={20} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => console.log(`Set up!`)}
+        >
+          <Icon name="thumbs-up" size={30} color={"#F3C976"} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => console.log(`Set up!`)}
+        >
+          <FontAwesome name="search" size={20} color="black" />
+        </TouchableOpacity>
       </View>
-    </View>
+    </>
   );
 };
 

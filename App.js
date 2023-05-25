@@ -4,6 +4,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { Platform, SafeAreaView, Text, View } from "react-native";
 import { StatusBar } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {

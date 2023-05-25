@@ -1,6 +1,7 @@
 const COLORS = {
   black: "#000",
   button: "#D9D9D9",
+  primaryColor: "#F3C976",
 };
 
 const FONT = {

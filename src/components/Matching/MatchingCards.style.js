@@ -1,41 +1,38 @@
 import { StyleSheet } from "react-native";
 import { FONT } from "../../constants/theme";
 export default StyleSheet.create({
-  cardContainer: {
+  container: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 10,
-    height: "75%",
+    flex: 1,
+  },
+
+  actionsContainer: {
+    flex: 0.18,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     width: "100%",
   },
 
-  cardImgWrapper: {
-    borderRadius: 18,
-    flex: 1,
-    height: "100%",
-    overflow: "hidden",
-  },
-  cardImg: {
-    height: "100%",
+  btn: {
+    backgroundColor: "#fff",
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    height: 50,
+    width: 50,
+    // Drop Shadow
+    shadowRadius: 4,
+    shadowOffset: { width: 4, height: 4 },
+    shadowColor: "#000",
+    shadowOpacity: 0.25,
+    elevation: 6,
   },
 
-  cardInfo: {
-    marginTop: "auto",
-    color: "#fff",
-    backgroundColor: "rgba(0,0,0,0.4)",
-    height: "20%",
-    padding: 14,
-    gap: 5,
-  },
-  cardInfoName: {
-    color: "#fff",
+  text: {
+    fontFamily: FONT.boldFont,
     fontSize: 16,
-    fontFamily: FONT.semiBoldFont,
-  },
-  cardInfoLocation: {
-    color: "#fff",
-    fontFamily: FONT.mottoFont,
-    fontSize: 10,
   },
 });

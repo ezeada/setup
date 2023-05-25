@@ -4,7 +4,8 @@ export default StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 10,
+
+    // paddingVertical: 14,
   },
 
   logoText: {
